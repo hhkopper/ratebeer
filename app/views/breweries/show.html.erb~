@@ -11,11 +11,11 @@
 </p>
 
 <p>Beers: </p>
-<% @brewery.beers.each do |beer| %>
-  <tr>
+  <% @brewery.beers.each do |beer| %>
+<tr>
     <td><%= beer.name %></td>
-  </tr>
-<% end %>
+</tr>
+  <% end %>
 
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
