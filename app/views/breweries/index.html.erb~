@@ -28,4 +28,8 @@
 <br>
 
 <%= link_to 'New Brewery', new_brewery_path %>
+<<<<<<< HEAD
+<br>
 <%= link_to 'List of beers', beers_path %>
+=======
+>>>>>>> 225dd34546bf9c830f934b7aac35e95f3737f9da

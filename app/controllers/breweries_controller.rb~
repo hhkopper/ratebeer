@@ -5,12 +5,19 @@ class BreweriesController < ApplicationController
   # GET /breweries.json
   def index
     @breweries = Brewery.all
+<<<<<<< HEAD
     render :panimot
+=======
+>>>>>>> 225dd34546bf9c830f934b7aac35e95f3737f9da
   end
 
   # GET /breweries/1
   # GET /breweries/1.json
   def show
+<<<<<<< HEAD
+=======
+    @brewery_name = Brewery.name
+>>>>>>> 225dd34546bf9c830f934b7aac35e95f3737f9da
   end
 
   # GET /breweries/new
