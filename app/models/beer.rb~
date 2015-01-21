@@ -3,7 +3,7 @@ class Beer < ActiveRecord::Base
 	has_many :ratings
 
 	def average_rating
-		
-		"Has #{ratings.count} ratings, average ratings.average(:score)" 
+		sana = "rating"
+		"Has #{ratings.count} #{sana.pluralize(ratings.count)}, average #{ratings.average(:score)}" 
 	end
 end	
