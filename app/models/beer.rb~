@@ -6,4 +6,8 @@ class Beer < ActiveRecord::Base
 		sana = "rating"
 		"Has #{ratings.count} #{sana.pluralize(ratings.count)}, average #{ratings.average(:score)}" 
 	end
+
+	def to_s
+		"#{self.name}, #{self.brewery.name}"
+	end
 end	
