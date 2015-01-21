@@ -3,6 +3,6 @@ class Rating < ActiveRecord::Base
 
 		def to_s
 			b = Beer.find_by id:self.beer_id
-			puts "#{b.name} #{self.score}"
+			"#{b.name} #{self.score}"
 		end
 end
