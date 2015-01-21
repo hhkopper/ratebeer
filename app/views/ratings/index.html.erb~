@@ -2,6 +2,6 @@
 
 <ul>
 	<% @ratings.each do |rating| %>
-	<li> <%= rating.to_s %> </li>
+	<li> <%= rating %> </li>
 	<% end %>
 </ul>

@@ -40,6 +40,15 @@ group :production do
    gem 'rails_12factor'
 end
 
+group :development, :test do
+   gem 'byebug'
+   gem 'web-console', '~> 2.0'
+end
+
+group :development, :test do
+   gem "better_errors"
+end
+
 ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
