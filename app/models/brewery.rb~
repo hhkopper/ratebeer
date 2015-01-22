@@ -1,7 +1,9 @@
 class Brewery < ActiveRecord::Base
-
+<<<<<<< HEAD
 	include RatingAverage
-
+	
+=======
+>>>>>>> 937ec34e433459d2c5d72d2eaf7abe9a4258630f
 	has_many :beers, dependent: :destroy
 	has_many :ratings, through: :beers
 
@@ -15,5 +17,12 @@ class Brewery < ActiveRecord::Base
 		self.year = 2015
 		puts "changed year to #{year}"
 	end
+<<<<<<< HEAD
+=======
 
+	def average_rating
+		sana = "rating"
+		"Has #{ratings.count} #{sana.pluralize(ratings.count)}, average #{ratings.average(:score)}"
+	end
+>>>>>>> 937ec34e433459d2c5d72d2eaf7abe9a4258630f
 end
