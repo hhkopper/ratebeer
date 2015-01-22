@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @brewery.name %></h2>
+
+<p>
+  <i>Established in
+  <%= @brewery.year %></i>
+</p>
+
+<p> Number of beers <%= @brewery.beers.count %>
+</p>
+<p>
+  <% @brewery.beers.each do |beer| %>
+    <%= link_to beer.name, beer_path(beer.id) %>
+  <% end %>
+</p>
+
+<% if @brewery.ratings.empty? %>
+	<p> Brewery has not any rated beers! </p>
+<% else %>
+	<p><%= @brewery.average_rating %></p>
+<% end %>
+<%= link_to 'Edit', edit_brewery_path(@brewery) %> 
