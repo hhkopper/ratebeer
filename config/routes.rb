@@ -4,6 +4,8 @@ Ratebeer::Application.routes.draw do
 
   resources :users
 
+  get 'signin', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
 
   root 'breweries#index'
