@@ -13,15 +13,16 @@
 			<%= link_to 'ratings', ratings_path %>
 			<%= link_to 'users', users_path %> |
 			<% if not session[:user_id].nil? %>
-				<%= link_to "#{current_user.username}", user_path(session[:user_id]) %>
+				<%= link_to "#{current_user.username}", user_path(current_user) %>
 				<%= link_to 'rate a beer', new_rating_path %>
-				<%= link_to 'signout', "signout", method: :delete %>
+				<%= link_to 'signout', signout_path, method: :delete %>
 			<% else %>
 				<%= link_to "signin", signin_path %>
+				<%= link_to "signup", signup_path %>
 			<% end %>
 		</div>
 
-		<% if not session[:user_id].nil? %>
+		<% if not current_user.nil? %>
 			<p><%= current_user.username %> signed in</p>
 		<% end %>
 

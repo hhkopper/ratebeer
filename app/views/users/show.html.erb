@@ -5,7 +5,11 @@
   <%= @user.username %>
 </p>
 
-<p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %></p>
+<p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %>.</p>
+
+<% @user.ratings.each do |rating| %>
+	<li> <%= rating %> <%= link_to 'delete', rating, method: :delete, data: {confirm: 'Are you sure?' } %> </li>
+<% end %><br>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
