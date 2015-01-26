@@ -5,5 +5,7 @@
   <%= @user.username %>
 </p>
 
+<p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %></p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
