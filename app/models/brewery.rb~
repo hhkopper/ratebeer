@@ -1,11 +1,18 @@
 class Brewery < ActiveRecord::Base
-<<<<<<< HEAD
+
 	include RatingAverage
-	
-=======
->>>>>>> 937ec34e433459d2c5d72d2eaf7abe9a4258630f
+
 	has_many :beers, dependent: :destroy
 	has_many :ratings, through: :beers
+
+	validates :name, length: { minimum: 1}
+	validate :year_between_past_and_this_year, on: :create
+
+	def year_between_past_and_this_year
+		if year < 1042 && year > Time.now.year
+			errors.add(:year, "Year must be between 1021 and #{Time.now.year}")
+		end
+	end
 
 	def print_report
 		puts self.name
@@ -17,12 +24,5 @@ class Brewery < ActiveRecord::Base
 		self.year = 2015
 		puts "changed year to #{year}"
 	end
-<<<<<<< HEAD
-=======
 
-	def average_rating
-		sana = "rating"
-		"Has #{ratings.count} #{sana.pluralize(ratings.count)}, average #{ratings.average(:score)}"
-	end
->>>>>>> 937ec34e433459d2c5d72d2eaf7abe9a4258630f
 end

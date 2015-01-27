@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 	include RatingAverage
 
-	has_many :ratings
+	validates :username, 	uniqueness: true,
+				length: { in: 3..15}
+
+	has_many :ratings, dependent: :destroy
 end

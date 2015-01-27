@@ -2,6 +2,10 @@ class Rating < ActiveRecord::Base
 	belongs_to :beer
 	belongs_to :user
 
+	validates :score, numericality: { greater_than_or_equal_to: 1,
+					less_than_or_equal_to: 50,
+					only_integer: true}
+
 	def to_s
 		b = Beer.find_by id:self.beer_id
 		"#{b.name} #{self.score}"
@@ -9,6 +13,6 @@ class Rating < ActiveRecord::Base
 
 	def usersName
 		user = User.find_by id:self.user_id
-		"#{user.name}"
+		"#{user.username}"
 	end
 end

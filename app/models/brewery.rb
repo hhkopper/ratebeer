@@ -4,6 +4,15 @@ class Brewery < ActiveRecord::Base
 
 	has_many :beers, dependent: :destroy
 	has_many :ratings, through: :beers
+	
+	validate :year_between_past_and_this_year
+	validates :name, length: { minimum: 1}
+
+	def year_between_past_and_this_year
+		if year < 1042 && year > Time.now.year
+			errors.add(:year, "Year must be between 1021 and #{Time.now.year}")
+		end
+	end
 
 	def print_report
 		puts self.name
