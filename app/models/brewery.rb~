@@ -6,11 +6,13 @@ class Brewery < ActiveRecord::Base
 	has_many :ratings, through: :beers
 
 	validates :name, length: { minimum: 1}
-	validate :year_between_past_and_this_year, on: :create
+	validates :year, numericality: { greater_than_or_equal_to: 1042,
+					only_integer: true}
+	validate :year_not_greater_than_this_year, on: :create
 
-	def year_between_past_and_this_year
-		if year < 1042 && year > Time.now.year
-			errors.add(:year, "Year must be between 1021 and #{Time.now.year}")
+	def year_not_greater_than_this_year
+		if year > Time.now.year
+			errors.add(:year, " can't be greater than #{Time.now.year}")
 		end
 	end
 
