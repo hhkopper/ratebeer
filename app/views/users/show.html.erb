@@ -11,5 +11,11 @@
 	<li> <%= rating %> <%= link_to 'delete', rating, method: :delete, data: {confirm: 'Are you sure?' } %> </li>
 <% end %><br>
 
+<h2>Jäsenyydet</h2>
+<% @user.memberships.each do |membership| %>
+	<li> <%= membership %>
+<% end %> 
+<br>
+<br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

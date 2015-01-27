@@ -7,4 +7,5 @@ class Membership < ActiveRecord::Base
 		c = BeerClub.find_by id:self.beer_club_id
 		"#{u.username} #{c.name}"
 	end
+
 end
