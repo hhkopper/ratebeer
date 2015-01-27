@@ -7,15 +7,24 @@
 
 <p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %>.</p>
 
+<% if @user.beer_clubs.empty? %>
+	<p> Go and you to a club! </p>
+<% else %>
+	<p> member of
+  		<% @user.beer_clubs.each do |club| %>
+   			<%= link_to club.name, beer_club_path(club.id) %>
+ 		<% end %>
+	</p>
+<% end %>
+
+
+
+<h3>Ratings</h3>
+<ul>
 <% @user.ratings.each do |rating| %>
 	<li> <%= rating %> <%= link_to 'delete', rating, method: :delete, data: {confirm: 'Are you sure?' } %> </li>
 <% end %><br>
+</ul>
 
-<h2>Jäsenyydet</h2>
-<% @user.memberships.each do |membership| %>
-	<li> <%= membership %>
-<% end %> 
-<br>
-<br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
