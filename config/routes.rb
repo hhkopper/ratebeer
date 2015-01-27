@@ -1,5 +1,7 @@
 Ratebeer::Application.routes.draw do
   
+  resources :beer_clubs
+
   resource :session, only: [:new, :create, :delete] 
 
   resources :users
@@ -15,6 +17,7 @@ Ratebeer::Application.routes.draw do
   #post 'ratings', to: 'ratings#create'
   
   resources :ratings, only: [:index,:new, :create, :destroy]
+  resources :memberships, only: [:index, :new, :create]
   resources :beers
   resources :breweries
 

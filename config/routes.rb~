@@ -1,5 +1,7 @@
 Ratebeer::Application.routes.draw do
   
+  resources :beer_clubs
+
   resource :session, only: [:new, :create, :delete] 
 
   resources :users
