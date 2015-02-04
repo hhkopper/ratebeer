@@ -49,6 +49,14 @@ group :development, :test do
    gem "better_errors"
 end
 
+group :development, :test do
+   gem 'rspec-rails', '~> 3.0'
+end
+
+group :test do
+   gem 'factory_girl_rails'
+end
+
 ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
