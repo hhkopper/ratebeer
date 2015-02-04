@@ -21,9 +21,16 @@ class User < ActiveRecord::Base
 		ratings.order(score: :desc).limit(1).first.beer
 	end
 
-	def favorite_style
+	def favorite_style				
+		return favorite_beer_feature(:style)
+	end
+
+	private
+
+	def favorite_beer_feature(feature)
 		return nil if ratings.empty?
-		ratings.first.beer.style
-		
+		grouped = ratings.group_by{ |r| r.beer.send(feature)}
+		grouped.each_pair{ |k, v| grouped[k] = v.sum(&:score) / v.size.to_f}
+		grouped.sort_by{ |k, v| v}.last[0]
 	end
 end

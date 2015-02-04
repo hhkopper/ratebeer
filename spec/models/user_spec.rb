@@ -89,10 +89,15 @@ describe User do
 		end
 
 		it "is the one with highest rating if several rated" do
-			
-		end
+			create_beers_with_ratings_and_style(10, 10, "Lager", user)
+			create_beers_with_ratings_and_style(10, 31, 50, "IPA", user)
+			create_beers_with_ratings_and_style(10, 50, "Tumma", user)
+
+			expect(user.favorite_style).to eq("IPA")
+		end		
 	end
 end
+
 
 def create_beer_with_rating(score, user)
 	beer = FactoryGirl.create(:beer)
