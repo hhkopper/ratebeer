@@ -63,7 +63,7 @@ describe User do
 			expect(user.favorite_beer).to eq(beer)
 		end
 
-		it "is the one with highest rating id several rated" do
+		it "is the one with highest rating if several rated" do
 			create_beers_with_ratings(10, 20, 15, 7, 9, user)
 			best = create_beer_with_rating(25, user)
 
@@ -77,6 +77,20 @@ describe User do
 		it "has method for determining one" do
 			expect(user).to respond_to(:favorite_style)
 		end
+
+		it "without ratings does not havea one" do
+			expect(user.favorite_style).to eq(nil)
+		end
+
+		it "is the only rated if only one rating" do
+			beer = create_beer_with_rating_and_style(10, "IPA" , user)
+
+			expect(user.favorite_style).to eq(beer.style)
+		end
+
+		it "is the one with highest rating if several rated" do
+			
+		end
 	end
 end
 
@@ -89,6 +103,18 @@ end
 def create_beers_with_ratings(*scores, user)
 	scores.each do |score|
 		create_beer_with_rating(score, user)
+	end
+end
+
+def create_beer_with_rating_and_style(score, style, user)
+	beer = FactoryGirl.create(:beer, style:style)
+	FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+	beer
+end
+
+def create_beers_with_ratings_and_style(*scores, style, user)
+	scores.each do |score|
+		create_beer_with_rating_and_style(score, style, user)
 	end
 end
 
