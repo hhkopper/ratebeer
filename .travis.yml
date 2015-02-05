@@ -9,5 +9,8 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: wAbS+CiZ07ahoZJuD1mUgm/JE5JuDCNcshJnzeS3fsirmqlgrZxeAfdWnE9Z+Vm0uQszCnyChrKePtNsvdrEt7YkefQ//E19RCa9qFGNhu5AGFacNn+/e/P9ZV0y9Fuvl6eqHzF0DSgV0dVUwqxX4zKrIPcAE+Bgsu+8rfSQEDg=
+    secure: bjJop0wM6VB6bQz318DeFvaxdayjDCW/YqipIsj0PNu0zA+VCbdeGfn2cJMMp6EmGJbLSftjLtuuGPakufqrEWUGuPONjRooUNr6LfJnDv+bEWAq58NQs7yUXglIn22YWvkP0Q1yg8/98ZQ6fSR3OIKFs88iVRUTS+BAwIm07mE=
+  app: young-thicket-6801
+  on:
+    repo: hhkopper/ratebeer
   run: "rake db:migrate"
