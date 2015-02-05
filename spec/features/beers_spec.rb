@@ -2,7 +2,12 @@ require 'rails_helper'
 
 describe "Beer" do
 
-	let!(:brewery) {FactoryGirl.create(:brewery)}
+	before :each do
+		@brewery = FactoryGirl.create(:brewery)
+		FactoryGirl.create :user
+
+		sign_in(username:"Pekka", password:"Foobar1")
+	end
 
 	it "is added to datebase when it is created right" do
 
@@ -10,7 +15,7 @@ describe "Beer" do
 
 		fill_in('beer[name]', with:'Oma olut' )
 		select('IPA', from:'beer[style]')
-		select(brewery.name, from:'beer[brewery_id]')
+		select(@brewery.name, from:'beer[brewery_id]')
 
 		expect{
 			click_button "Create Beer"
@@ -21,7 +26,7 @@ describe "Beer" do
 		visit new_beer_path
 
 		select('IPA', from:'beer[style]')
-		select(brewery.name, from:'beer[brewery_id]')
+		select(@brewery.name, from:'beer[brewery_id]')
 
 		click_button "Create Beer"
 
