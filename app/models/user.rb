@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 		return favorite_beer_feature(:style)
 	end
 
+	def favorite_brewery
+		return favorite_beer_feature(:brewery)
+	end
+
 	private
 
 	def favorite_beer_feature(feature)

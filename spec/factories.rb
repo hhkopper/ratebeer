@@ -23,8 +23,4 @@ FactoryGirl.define do
 		brewery
 		style "Lager"
 	end
-
-	factory :style do
-		name "Lager"
-	end
 end
