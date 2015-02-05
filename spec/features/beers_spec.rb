@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe "Beer" do
+
 	let!(:brewery) {FactoryGirl.create(:brewery)}
 
 	it "is added to datebase when it is created right" do
+
 		visit new_beer_path
 
 		fill_in('beer[name]', with:'Oma olut' )

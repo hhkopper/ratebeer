@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe Beer do
+
 	it "is saved when name and style is given" do
+
 		beer = Beer.create name:"Olut", style:"Lager"
 
 		expect(beer).to be_valid

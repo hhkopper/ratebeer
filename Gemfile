@@ -57,6 +57,7 @@ group :test do
    gem 'factory_girl_rails'
    gem 'capybara'
    gem 'launchy'
+   gem 'simplecov', require: false
 end
 
 ruby '2.0.0'
