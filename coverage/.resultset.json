@@ -285,6 +285,10 @@
         1,
         0,
         null,
+        null,
+        1,
+        0,
+        null,
         null
       ],
       "/home/wadror/ratebeer/app/controllers/beers_controller.rb": [
@@ -456,7 +460,7 @@
       "/home/wadror/ratebeer/lib/beermapping_api.rb": [
         1,
         1,
-        5,
+        6,
         10,
         null,
         null,
@@ -468,22 +472,22 @@
         1,
         null,
         1,
-        5,
+        4,
         null,
-        0,
-        0,
+        4,
+        4,
         null,
-        0,
+        4,
         null,
-        0,
-        0,
-        0,
+        3,
+        3,
+        4,
         null,
         null,
         null,
         1,
-        5,
-        0,
+        4,
+        4,
         null,
         null,
         null
@@ -667,6 +671,6 @@
         null
       ]
     },
-    "timestamp": 1423659780
+    "timestamp": 1423683140
   }
 }
