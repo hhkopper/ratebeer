@@ -5,4 +5,8 @@ class BeerClub < ActiveRecord::Base
 	def to_s
 		"#{self.name}"
 	end
+
+	def member(user)
+		users.include? user
+	end
 end
