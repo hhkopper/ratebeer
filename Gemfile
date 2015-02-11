@@ -58,12 +58,15 @@ group :test do
    gem 'capybara'
    gem 'launchy'
    gem 'simplecov', require: false
+   gem 'webmock'
 end
 
 ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
+
+gem 'httparty'
 
 # Use unicorn as the app server
 # gem 'unicorn'
