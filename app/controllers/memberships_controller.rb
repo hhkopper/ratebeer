@@ -8,6 +8,13 @@ class MembershipsController < ApplicationController
 		@clubs = BeerClub.all
 	end
 
+	def destroy
+		membership = Membership.find_by id:params["id"]
+		club_name = membership.beer_club.name
+		membership.destroy
+		redirect_to current_user, notice: "Membership in #{club_name} ended."
+	end
+
 	def create	
 		club = params.require(:membership).permit(:beer_club_id)
 		club_id = club[:beer_club_id]
@@ -22,9 +29,9 @@ class MembershipsController < ApplicationController
 		else
 	
 			@membership = Membership.new params.require(:membership).permit(:user_id, :beer_club_id)
-			if @membership.save
+			if @membership.save				
 				current_user.memberships << @membership
-				redirect_to user_path current_user
+				redirect_to beer_club_path(club_id), notice: "#{current_user.username}, welcome to club!"
 			else
 				@clubs = BeerClub.all
 				render :new

@@ -11,7 +11,8 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
-	@membership = Membership.new
+	
+	set_membership
 	@membership.beer_club = @beer_club
   end
 
@@ -66,12 +67,20 @@ class BeerClubsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_beer_club
-      @beer_club = BeerClub.find(params[:id])
-    end
+    	def set_beer_club
+      		@beer_club = BeerClub.find(params[:id])
+    	end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def beer_club_params
-      params.require(:beer_club).permit(:name, :founded, :city)
-    end
+    	def beer_club_params
+      		params.require(:beer_club).permit(:name, :founded, :city)
+    	end
+
+	def set_membership
+		if current_user and @beer_club.users.include? current_user
+			@membership = Membership.find_by(user_id:current_user.id, beer_club_id:@beer_club.id)
+		else
+			@membership = Membership.new
+		end
+	end
 end

@@ -1,19 +1,12 @@
-<p id="notice"><%= notice %></p>
+
+<p id="notice"> <%= notice %> </p>
+
+<h1><%= @beer_club.name %> <%= @beer_club.city %></h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @beer_club.name %>
+Founded <%= @beer_club.founded %>
 </p>
 
-<p>
-  <strong>Founded:</strong>
-  <%= @beer_club.founded %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @beer_club.city %>
-</p>
 
 <h3>Members</h3>
 <ul>
@@ -28,6 +21,11 @@
 			<%= f.hidden_field :beer_club_id %>
 			<%= f.submit value:"join the club" %>
 		<% end %>
+	<% else %>
+		<%= form_for(@membership, method: "delete") do |f| %>
+      			<%= f.hidden_field :beer_club_id %>
+      			<%= f.submit value: "end the membership" %>
+   		<% end %>
 	<% end %>
 <% end %>
 <br>
