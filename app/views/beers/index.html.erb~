@@ -1,5 +1,7 @@
 <h1>Listing beers</h1>
 
+<p id="notice"><%= notice %></p>
+
 <table>
   <thead>
     <tr>
@@ -17,10 +19,10 @@
       <% byebug if beer.brewery.nil? %>
       <tr>
         <td><%= link_to beer.name, beer_path(beer.id) %></td>
-        <td><%= beer.style %></td>
+	<td><%= beer.style_name %></td>
         <td><%= link_to beer.brewery.name, brewery_path(beer.brewery.id) %></td>
-        <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
-        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_beer_path(beer) if current_user %></td>
+        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if current_user %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Beer', new_beer_path %>
+<%= link_to 'New Beer', new_beer_path if current_user %>

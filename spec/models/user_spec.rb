@@ -83,17 +83,22 @@ describe User do
 		end
 
 		it "is the only rated if only one rating" do
-			beer = create_beer_with_rating_and_style(10, "IPA" , user)
+			style = FactoryGirl.create(:style)
+			beer = create_beer_with_rating_and_style(10, style , user)
 
 			expect(user.favorite_style).to eq(beer.style)
 		end
 
 		it "is the one with highest rating if several rated" do
-			create_beers_with_ratings_and_style(10, 10, "Lager", user)
-			create_beers_with_ratings_and_style(10, 31, 50, "IPA", user)
-			create_beers_with_ratings_and_style(10, 50, "Tumma", user)
+			style1 = FactoryGirl.create(:style)
+			style2 = FactoryGirl.create(:style)
+			style3 = FactoryGirl.create(:style)
 
-			expect(user.favorite_style).to eq("IPA")
+			create_beers_with_ratings_and_style(10, 10, style1, user)
+			create_beers_with_ratings_and_style(10, 31, 50, style2, user)
+			create_beers_with_ratings_and_style(10, 50, style3, user)
+
+			expect(user.favorite_style).to eq(style2)
 		end		
 	end
 

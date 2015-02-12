@@ -1,5 +1,7 @@
 Ratebeer::Application.routes.draw do
 
+  resources :styles
+
   resources :places, only: [:index, :show]
   post 'places', to: 'places#search'
   

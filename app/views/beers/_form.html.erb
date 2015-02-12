@@ -13,7 +13,7 @@
 
 <%= form_for(@beer) do |f| %>
 	name: <%= f.text_field :name %>
-	<%= f.select :style, options_for_select(@styles) %>
+	<%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name, selected: @beer.style) %>
 	<%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name, selected: @beer.brewery) %>
 	<%= f.submit %>
 <% end %>

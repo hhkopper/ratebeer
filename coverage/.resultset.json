@@ -37,6 +37,10 @@
         1,
         null
       ],
+      "/home/wadror/ratebeer/app/helpers/styles_helper.rb": [
+        1,
+        null
+      ],
       "/home/wadror/ratebeer/app/helpers/users_helper.rb": [
         1,
         null
@@ -49,12 +53,17 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         1,
         null,
         1,
         2,
+        null,
+        null,
+        1,
+        1,
         null,
         null
       ],
@@ -100,6 +109,12 @@
         null,
         null
       ],
+      "/home/wadror/ratebeer/app/models/style.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
       "/home/wadror/ratebeer/app/models/user.rb": [
         1,
         1,
@@ -137,8 +152,8 @@
         1,
         44,
         96,
-        78,
-        78,
+        88,
+        88,
         null,
         null
       ],
@@ -687,6 +702,6 @@
         null
       ]
     },
-    "timestamp": 1423732334
+    "timestamp": 1423741360
   }
 }

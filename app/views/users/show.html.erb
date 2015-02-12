@@ -17,7 +17,7 @@
 	</p>
 <% end %>
 <% if @user.favorite_style %>
-	<p>Your favorite beer style is <%= @user.favorite_style %>. </p>
+	<p>Your favorite beer style is <%= @user.favorite_style.name %>. </p>
 <% end %>
 <% if @user.favorite_brewery %>
 	<p>Your favorite brewery is <%= @user.favorite_brewery.name %>. </p>

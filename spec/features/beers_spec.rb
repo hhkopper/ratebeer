@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Beer" do
 
 	before :each do
+		@style = FactoryGirl.create(:style)
 		@brewery = FactoryGirl.create(:brewery)
 		FactoryGirl.create :user
 
@@ -14,7 +15,7 @@ describe "Beer" do
 		visit new_beer_path
 
 		fill_in('beer[name]', with:'Oma olut' )
-		select('IPA', from:'beer[style]')
+		select(@style.name, from:'beer[style_id]')
 		select(@brewery.name, from:'beer[brewery_id]')
 
 		expect{
@@ -25,7 +26,7 @@ describe "Beer" do
 	it "is not added to datebase if information is missing" do
 		visit new_beer_path
 
-		select('IPA', from:'beer[style]')
+		select(@style.name, from:'beer[style_id]')
 		select(@brewery.name, from:'beer[brewery_id]')
 
 		click_button "Create Beer"
