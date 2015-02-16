@@ -68,6 +68,13 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'httparty'
 
+gem 'bootstrap-sass'
+group :development do
+	gem 'rails_layout'
+end
+
+
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
