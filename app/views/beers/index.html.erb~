@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,7 +19,7 @@
       <% byebug if beer.brewery.nil? %>
       <tr>
         <td><%= link_to beer.name, beer_path(beer.id) %></td>
-	<td><%= beer.style_name %></td>
+	<td><%= link_to beer.style_name, style_path(beer.style_id) %></td>
         <td><%= link_to beer.brewery.name, brewery_path(beer.brewery.id) %></td>
         <td><%= link_to 'Edit', edit_beer_path(beer) if current_user %></td>
         <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if current_user %></td>
