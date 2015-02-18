@@ -9,7 +9,9 @@ Ratebeer::Application.routes.draw do
 
   resource :session, only: [:new, :create, :delete] 
 
-  resources :users
+  resources :users do
+	post 'iced_account', on: :member
+  end
 
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'

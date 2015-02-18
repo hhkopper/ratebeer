@@ -5,16 +5,20 @@
     <tr>
       <th>Username</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.username %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
+	<% if admin_user(current_user) %>
+		<td> 
+			<% if not user.frozed %>
+				<span class="label label-info">frozed</span>
+			<% end %>
+		</td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>

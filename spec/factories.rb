@@ -4,6 +4,7 @@ FactoryGirl.define do
 		password "Foobar1"
 		password_confirmation "Foobar1"
 		admin true
+		frozed true
 	end
 
 	factory :rating do

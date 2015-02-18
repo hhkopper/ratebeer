@@ -1,8 +1,12 @@
 
-<p>
-  <strong>Username:</strong>
+<h2>
   <%= @user.username %>
-</p>
+	<% if admin_user(current_user) %>
+		<% if not @user.frozed %>
+			<span class="label label-info">frozed</span>
+		<% end %>
+	<% end %>
+</h2>
 
 <p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %>.</p>
 
@@ -27,7 +31,7 @@
 <% @user.ratings.each do |rating| %>
 	<li>
 		<%= rating %> 
-		<% if current_user %>
+		<% if @user == current_user %>
 			<%= link_to 'delete', rating, method: :delete, data: {confirm: 'Are you sure?' }, class:'btn btn-danger btn-xs' %>
 		<% end %> 
 	</li>
@@ -36,4 +40,14 @@
 
 <% if @user == current_user %> 
 	<%= edit_and_destroy_buttons(@user) %>
+	<br>
+	<br>
+<% end %>
+
+<% if admin_user(current_user) && @user.frozed == true %>
+	<%= link_to "froze account", iced_account_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+<% end %>
+
+<% if admin_user(current_user) && @user.frozed == false || admin_user(current_user) && @user.frozed.nil? %>
+	<%= link_to "free account", iced_account_user_path(@user.id), method: :post, class: "btn btn-danger" %>
 <% end %>
