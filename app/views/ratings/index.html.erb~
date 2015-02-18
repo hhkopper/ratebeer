@@ -2,15 +2,13 @@
 
 <p> Number of ratings: <%= @ratings.count%> </p>
 
-<%= render "list_rating", recent: @recent %>
-
-<br>
-
 <%= render "list_brewery", top_breweries: @top_breweries %>
 
-<br>
-
 <%= render "list_beer", top_beers: @top_beers %>
+
+<%= render "list_user", users: @users %>
+
+<%= render "list_rating", recent: @recent %>
 
 <br>
 
