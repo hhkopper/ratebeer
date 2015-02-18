@@ -27,5 +27,5 @@ Founded <%= @beer_club.founded %>
 	<% end %>
 <% end %>
 <br>
-<br>
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) if current_user %>
+<%= edit_button(@beer_club) %>
+<%= destroy_button(@beer_club) %>

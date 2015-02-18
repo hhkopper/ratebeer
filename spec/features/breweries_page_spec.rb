@@ -28,7 +28,6 @@ describe "Breweries page" do
 
     it "allows user to navigate to page of a Brewery" do
       click_link "Koff"
-
       expect(page).to have_content "Koff"
       expect(page).to have_content "Established in 1897"
     end
