@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 		"#{self.username}"
 	end
 
+	def self.top(n)
+		User.all.sort_by{ |u| u.ratings.count }.reverse.first(n)
+	end
+
 	def favorite_beer
 		return nil if ratings.empty?
 		ratings.order(score: :desc).limit(1).first.beer

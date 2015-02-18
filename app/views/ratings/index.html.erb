@@ -2,25 +2,19 @@
 
 <p> Number of ratings: <%= @ratings.count%> </p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Beer</th>
-      <th>Scores</th>
-      <th>User</th>
-    </tr>
-  </thead>
+<%= render "list_rating", recent: @recent %>
 
-  <tbody>
-    <% @ratings.each do |rating| %>
-      <tr>
-        <td><%= rating.beer.name %></td>
-	<td><%= rating.score %></td>
-        <td><%= link_to rating.usersName, user_path(rating.user_id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<br>
+
+<%= render "list_brewery", top_breweries: @top_breweries %>
+
+<br>
+
+<%= render "list_beer", top_beers: @top_beers %>
+
+<br>
+
+<%= render "list_user", users: @users %>
 
 <br>
 

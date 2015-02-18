@@ -1,0 +1,20 @@
+<h3> <%= @recent.count %> most recent ratings: </h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Beer</th>
+      <th>Scores</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recent.each do |rating| %>
+      <tr>
+        <td><%= rating.beer.name %></td>
+	<td><%= rating.score %></td>
+        <td><%= link_to rating.usersName, user_path(rating.user_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

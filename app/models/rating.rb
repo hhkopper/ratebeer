@@ -6,7 +6,7 @@ class Rating < ActiveRecord::Base
 					less_than_or_equal_to: 50,
 					only_integer: true}
 
-	scope :recent, -> {}
+	scope :recent, -> {Rating.order("created_at DESC").first(5)}
 
 	def to_s
 		b = Beer.find_by id:self.beer_id
