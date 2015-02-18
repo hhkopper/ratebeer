@@ -10,6 +10,9 @@ class Brewery < ActiveRecord::Base
 					only_integer: true}
 	validate :year_not_greater_than_this_year
 
+	scope :active, -> {where active:true}
+	scope :retired, -> {where active:[nil, false]}
+
 	def year_not_greater_than_this_year
 		if year > Time.now.year
 			errors.add(:year, " can't be greater than #{Time.now.year}")

@@ -6,6 +6,8 @@ class Rating < ActiveRecord::Base
 					less_than_or_equal_to: 50,
 					only_integer: true}
 
+	scope :recent, -> {}
+
 	def to_s
 		b = Beer.find_by id:self.beer_id
 		"#{b.name} #{self.score}"
