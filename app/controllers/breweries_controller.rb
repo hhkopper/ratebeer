@@ -10,15 +10,10 @@ class BreweriesController < ApplicationController
 
     order = params[:order] || 'name'
 
-    if session[:sorted_by].nil?
-	session[:sorted_by] = "asc"
-    end
+    session[:sort_order] = session[:sort_order] == 'asc' ? 'desc' : 'asc'
 
-    if session[:sorted_by] == "asc"
-    	sort_normal(order)
-    else
-	sort_reverse(order)
-    end
+    @active_breweries = brewery_sort(@active_breweries, order)
+    @retired_breweries = brewery_sort(@retired_breweries, order)
   end
 
   # GET /breweries/1
@@ -95,27 +90,12 @@ class BreweriesController < ApplicationController
       params.require(:brewery).permit(:name, :year, :active)
     end
 
-    def sort_reverse(order)
-	session[:sorted_by] = "asc"
-	@active_breweries = case order
-		when 'name' then @active_breweries.sort_by{ |b| b.name }.reverse
-		when 'year' then @active_breweries.sort_by{ |b| b.year }.reverse	
-    	end
-	@retired_breweries = case order
-		when 'name' then @retired_breweries.sort_by{ |b| b.name }.reverse
-		when 'year' then @retired_breweries.sort_by{ |b| b.year }.reverse	
-    	end
-    end
+    def brewery_sort(list, order)
+	sorting = session[:sort_order]
 
-    def sort_normal(order)
-	@active_breweries = case order
-		when 'name' then @active_breweries.sort_by{ |b| b.name }
-		when 'year' then @active_breweries.sort_by{ |b| b.year }	
-    	end
-	@retired_breweries = case order
-		when 'name' then @retired_breweries.sort_by{ |b| b.name }
-		when 'year' then @retired_breweries.sort_by{ |b| b.year }	
-    	end
-	session[:sorted_by] = "desc"
+	return case order
+		when 'name' then list.order('name ' + sorting)
+		when 'year' then list.order('year ' + sorting)
+	end
     end
 end
