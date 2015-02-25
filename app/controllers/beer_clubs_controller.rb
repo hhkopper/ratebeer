@@ -32,6 +32,8 @@ class BeerClubsController < ApplicationController
 
     respond_to do |format|
       if @beer_club.save
+	create_membership
+
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer_club }
       else
@@ -82,5 +84,13 @@ class BeerClubsController < ApplicationController
 		else
 			@membership = Membership.new
 		end
+	end
+
+	def create_membership
+		@membership = Membership.new
+		@membership.beer_club = @beer_club
+		@membership.user = current_user
+		@membership.confirmed = true
+		@membership.save
 	end
 end
