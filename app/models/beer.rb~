@@ -17,4 +17,10 @@ class Beer < ActiveRecord::Base
 	def style_name
 		Style.find_by(id:self.style_id).name
 	end
+
+	def self.top(n)
+		sortable = Beer.all.select{ |b| b.average_rating > 0}
+		sorted_by_rating_in_desc_order = sortable.sort_by{ |b| -(b.average_rating||0)}
+		sorted_by_rating_in_desc_order.first(n)
+	end
 end	

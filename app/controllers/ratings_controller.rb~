@@ -1,10 +1,9 @@
 class RatingsController < ApplicationController
+
+  before_action :set_information, only: [:index]
+
 	def index
-		@ratings = Rating.all
-		@recent = Rating.recent
-		@top_breweries = Brewery.top(3)
-		@top_beers = Beer.top(3)
-		@users = User.top(3)
+		#Ennen indexia kutsutaan apumetodia set_information, joka asettaa tarvittavat tiedot välimuistiin ja pitää niitä sielä 5min. Tämän jälkeen seuraavan kerran ladattaessa tallentaa tiedot uudelleen muistiin.
 	end
 
 	def new
@@ -29,5 +28,16 @@ class RatingsController < ApplicationController
 		rating = Rating.find(params[:id])
 		rating.delete if current_user == rating.user
 		redirect_to :back
+	end
+
+	private
+	
+	def set_information
+		@ratings = Rails.cache.fetch('all_ratings', expires_in: 5.minutes) {Rating.all}
+		@recent = Rails.cache.fetch('recents', expires_in: 5.minutes) {Rating.recent}
+		@top_breweries = Rails.cache.fetch('top_breweries', expires_in: 5.minutes) {Brewery.top(3)}
+		@top_beers = Rails.cache.fetch('top_beers', expires_in: 5.minutes) {Beer.top(3)}
+		@users = Rails.cache.fetch('top_users', expires_in: 5.minutes) {User.top(3)}
+		@top_styles = Rails.cache.fetch('top_styles', expires_in: 5.minutes) {Style.top(3)}
 	end
 end

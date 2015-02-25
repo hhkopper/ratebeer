@@ -77,6 +77,8 @@ end
 
 gem 'jquery-turbolinks'
 
+gem 'rack-mini-profiler'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

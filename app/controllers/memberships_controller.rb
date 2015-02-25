@@ -39,7 +39,7 @@ class MembershipsController < ApplicationController
 			@membership = Membership.new params.require(:membership).permit(:user_id, :beer_club_id)
 			if @membership.save				
 				current_user.memberships << @membership
-				redirect_to beer_club_path(club_id), notice: "#{current_user.username}, welcome to club!"
+				redirect_to beer_club_path(club_id), notice: "#{current_user.username}, your application has been sended!"
 			else
 				@clubs = BeerClub.all
 				render :new
