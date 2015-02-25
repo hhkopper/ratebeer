@@ -1,0 +1,5 @@
+<ul>
+	<% @beer_club.memberships.confirmed.each do |confirmed| %>
+		<li> <%= confirmed.user %></li>
+	<% end %>
+</ul>

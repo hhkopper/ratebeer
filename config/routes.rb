@@ -29,7 +29,11 @@ Ratebeer::Application.routes.draw do
   #post 'ratings', to: 'ratings#create'
   
   resources :ratings, only: [:index, :new, :create, :destroy]
-  resources :memberships, only: [:index, :new, :create, :destroy]
+
+  resources :memberships, only: [:index, :new, :create, :destroy] do
+	post "confirm", on: :member
+  end
+
   resources :beers
 
   resources :breweries do

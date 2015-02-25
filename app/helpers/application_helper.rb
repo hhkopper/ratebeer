@@ -27,4 +27,12 @@ module ApplicationHelper
 		number_with_precision(number, precision: 1)
 	end
 
+	def member_of(club, user)
+		ship = nil
+		if user and user.beer_clubs.include?(club)
+			ship = Membership.find_by(user_id:user.id, beer_club_id:club.id)
+		end
+		ship
+	end
+
 end

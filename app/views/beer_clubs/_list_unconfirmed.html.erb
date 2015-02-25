@@ -1,0 +1,9 @@
+<h4>Outstanding applications</h4>
+<ul>
+	<% @beer_club.memberships.unconfirmed.each do |unconfirmed| %>
+		<li> 
+			<%= unconfirmed.user %>		
+			<%= link_to "confirm", confirm_membership_path(unconfirmed.id), method: :post, class: "btn btn-primary btn-xs" %>			
+		</li>
+	<% end %>
+</ul> 

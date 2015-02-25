@@ -10,21 +10,26 @@
 
 <p>Has made <%= @user.ratings.count %> ratings. Average of the ratings <%= @user.average_rating %>.</p>
 
-<% if @user.beer_clubs.empty? %>
-	<p> Go and join a club! </p>
-<% else %>
-	<p> member of
-  		<% @user.beer_clubs.each do |club| %>
-   			<%= link_to club.name, beer_club_path(club.id), class:'btn btn-default btn-xs' %>
- 		<% end %>
-	</p>
-<% end %>
 <% if @user.favorite_style %>
 	<p>Your favorite beer style is <%= @user.favorite_style.name %>. </p>
 <% end %>
 <% if @user.favorite_brewery %>
 	<p>Your favorite brewery is <%= @user.favorite_brewery.name %>. </p>
 <% end %>
+
+<h3>Beer clubs</h3>
+<p><strong>member of</strong></p>
+<ul>
+	<% @user.memberships.confirmed.each do |membership| %>
+		<li><%= membership.beer_club %></li>
+	<% end %>
+</ul>
+<p><strong>applied mambership of</strong></p>
+<ul>
+	<% @user.memberships.unconfirmed.each do |membership| %>
+		<li><%= membership.beer_club %></li>
+	<% end %>
+</ul>
 
 <h3>Ratings</h3>
 <ul>

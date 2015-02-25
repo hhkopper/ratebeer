@@ -7,11 +7,12 @@ Founded <%= @beer_club.founded %>
 
 
 <h3>Members</h3>
-<ul>
-<% @beer_club.users.each do |user| %>
-	<li> <%= link_to user, user_path(user.id) %></li>
-<% end %> 
-</ul>
+<%= render 'list_confirmed', beer_club: @beer_club %>
+
+<% ship = member_of(@beer_club, current_user) %>
+<% if ship and ship.confirmed %>
+	<%= render 'list_unconfirmed', beer_club: @beer_club %>
+<% end %>
 
 <% if current_user %>
 	<% unless @beer_club.member(current_user) %>
@@ -20,10 +21,13 @@ Founded <%= @beer_club.founded %>
 			<%= f.submit value:"join the club" %>
 		<% end %>
 	<% else %>
-		<%= form_for(@membership, method: "delete") do |f| %>
-      			<%= f.hidden_field :beer_club_id %>
-      			<%= f.submit value: "end the membership" %>
-   		<% end %>
+		<% membership = member_of(@beer_club, current_user) %>
+		<% if membership and membership.confirmed %>
+			<%= form_for(@membership, method: "delete") do |f| %>
+      				<%= f.hidden_field :beer_club_id %>
+      				<%= f.submit value: "end the membership" %>
+   			<% end %>
+		<% end %>
 	<% end %>
 <% end %>
 <br>

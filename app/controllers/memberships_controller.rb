@@ -1,4 +1,12 @@
 class MembershipsController < ApplicationController
+		
+  	def confirm
+		membership = Membership.find(params[:id])
+		membership.update_attribute :confirmed, (not membership.confirmed)
+
+		redirect_to :back
+  	end
+
 	def index
 		@memberships = Membership.all
 	end
