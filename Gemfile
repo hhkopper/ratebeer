@@ -73,7 +73,7 @@ group :development do
 	gem 'rails_layout'
 end
 
-
+gem 'jquery-turbolinks'
 
 # Use unicorn as the app server
 # gem 'unicorn'
