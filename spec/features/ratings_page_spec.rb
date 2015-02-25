@@ -18,9 +18,11 @@ describe "Ratings page" do
 			rating2 = FactoryGirl.create(:rating, beer:beer2, user:@user)
 
       			visit ratings_path
+			
     		end
 
 		it "lists the ratings and their total number" do
+save_and_open_page
 			expect(page).to have_content "Number of ratings: #{Rating.count}"
 			expect(page).to have_content "anonymous 10 #{@user.username}"
 			expect(page).to have_content "Oma olut 10 #{@user.username}"

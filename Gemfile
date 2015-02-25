@@ -79,6 +79,8 @@ gem 'jquery-turbolinks'
 
 gem 'rack-mini-profiler'
 
+gem 'omniauth-github'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

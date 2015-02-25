@@ -1,5 +1,7 @@
 Ratebeer::Application.routes.draw do
 
+  get 'auth/:provider/callback', to: 'sessions#create_oauth'
+
   get 'beerlist', to:'beers#list'
   get 'ngbeerlist', to:'beers#nglist'
 
@@ -29,6 +31,7 @@ Ratebeer::Application.routes.draw do
   #post 'ratings', to: 'ratings#create'
   
   resources :ratings, only: [:index, :new, :create, :destroy]
+
   resources :memberships, only: [:index, :new, :create, :destroy] do
 	post "confirm", on: :member
   end
