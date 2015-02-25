@@ -5,7 +5,7 @@ class BreweriesController < ApplicationController
 
   def skip_if_cached
 	@order = params[:order] || 'name'
-	return render :index if fragment_exist?('brewerylist')
+	return render :index if fragment_exist?( "brewerylist-#{@order}" )
   end
 
   def list
@@ -43,7 +43,9 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
-    expire_fragment('brewerylist')
+    expire_fragment('brewerylist-name')
+    expire_fragment('brewerylist-year')
+
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -60,7 +62,9 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
-    expire_fragment('brewerylist')
+    expire_fragment('brewerylist-name')
+    expire_fragment('brewerylist-year')
+
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -75,7 +79,9 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
-    expire_fragment('brewerylist')
+    expire_fragment('brewerylist-name')
+    expire_fragment('brewerylist-year')
+
     @brewery.destroy
     respond_to do |format|
       format.html { redirect_to breweries_url }

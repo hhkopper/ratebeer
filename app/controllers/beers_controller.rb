@@ -53,7 +53,10 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    expire_fragment('beerlist-#{@order}')
+    expire_fragment('beerlist-name')
+    expire_fragment('beerlist-brewery')
+    expire_fragment('beerlist-style')
+
     @beer = Beer.new(beer_params)
 
     respond_to do |format|
@@ -72,7 +75,9 @@ class BeersController < ApplicationController
   # PATCH/PUT /beers/1
   # PATCH/PUT /beers/1.json
   def update
-    expire_fragment('beerlist-#{@order}')
+    expire_fragment('beerlist-name')
+    expire_fragment('beerlist-brewery')
+    expire_fragment('beerlist-style')
     respond_to do |format|
       if @beer.update(beer_params)
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
@@ -87,7 +92,9 @@ class BeersController < ApplicationController
   # DELETE /beers/1
   # DELETE /beers/1.json
   def destroy
-    expire_fragment('beerlist-#{@order}')
+    expire_fragment('beerlist-name')
+    expire_fragment('beerlist-brewery')
+    expire_fragment('beerlist-style')
     @beer.destroy
     respond_to do |format|
       format.html { redirect_to beers_url }
